@@ -1,6 +1,18 @@
-## Script function
-perl O17_targeted_screen.pl -s GCA_015798135.1_PDT000396168.1_genomic -b GCA_002GCA_015798135.1_PDT000396168.1_genomic.blast.m6 -o GCA_015798135.1_PDT000396168.1_genomic.result.txt
-This script parses BLAST alignment results of target sequences to judge whether target sequences are present. It outputs the target‑sequence name when a target is confirmed present; outputs the target name followed by an asterisk (`*`) for probable presence; and produces no output for other cases.
+# O17_targeted_screen.pl
 
-perl /Genome/mengxh/Pathogen/Phylogenetic_trees/VP/Ref_O/antigen_assign_merge2.pl GCA_015798135.1.blast.m6 GCA_015798135.1.result 90 0.9 O1_O18.list GCA_015798135.1
-This script is used for O-antigen serotype determination. It outputs the definite O-antigen serotype when the criteria are fully satisfied. If the sample indirectly meets the screening conditions, it returns the serotype with an asterisk suffix (serotype*). For undetermined cases, the script outputs basic statistical evidence for manual curation and further judgment.
+A Perl script for **downstream confirmation of O17:K4 serotype candidates** from BLASTn m6 results.
+
+This script is designed to run after an initial O17 screening step.  
+It takes samples that were either:
+
+- flagged as **O17-positive** by the initial screen, or
+- flagged as **requiring manual review** (e.g., include `O17` candidates),
+
+and performs a targeted check to confirm whether the O17-specific region is intact or disrupted.
+
+It uses a two-tier strategy:
+
+1. **Full module BLAST** — if the full O17 module is covered ≥ 90%, the sample is confirmed as O17.
+2. **Individual gene search and collinearity check** (fallback) — if the full module is not covered, the script checks three specific genes (`gene_273`, `gene_274`, `gene_275`). If all three are present at ≥ 90% coverage and arranged collinearly on the same contig, the sample is confirmed as O17. If all three genes are present but on different contigs, the sample is reported as an O17 candidate (`O17*`) for manual review.
+
+## Dependencies
