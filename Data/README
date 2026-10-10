@@ -1,0 +1,32 @@
+# Data
+
+This folder contains part of sequence data for the O17 antigen of *Vibrio parahaemolyticus*.
+
+## Files
+
+Four sequences are provided, corresponding to three contiguous genes (273, 274, 275) and the naturally contiguous region spanning them:
+
+1. **Gene 273** – Present in other O antigens as well, but very rare.
+2. **Gene 274** – Present in other O antigens as well, but very rare.
+3. **Gene 275** – Unique to the O17 antigen.
+4. **Gene 273 + 274 + 275 (contiguous full-length sequence)** – The combined sequence of the three consecutive genes, which serves as a marker for the O17 antigen.
+
+> Replace the descriptions above with the actual file names, e.g. `gene273.fasta`, `gene274.fasta`, `gene275.fasta`, `gene273_275.fasta`.
+
+## Source
+
+These sequences were obtained in this study.
+
+## Usage
+
+These sequences are used as input for O17_targeted_screen.pl`.
+
+## License
+
+- Code in this repository is licensed under the MIT License.
+- Data in this folder is licensed under CC BY 4.0.
+
+## Notes
+
+- Only the O17-related sequences are included here.
+- Additional data are available from the corresponding author upon reasonable request.
