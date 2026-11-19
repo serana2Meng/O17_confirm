@@ -1,12 +1,13 @@
-## O17_targeted_screen.pl
+# O17_targeted_screen.pl
 
-A Perl script for **downstream confirmation of O17:K4 serotype candidates** from BLASTn m6 results.
+A Perl script for **downstream confirmation of O17 serotype candidates** from BLASTn m6 results.
 
 This script is designed to run after an initial O17 screening step. 
-It takes samples that were either:
+It takes samples that fall into one of the following three categories:
 
-- flagged as **O17-positive** by the initial screen, or
-- flagged as **requiring manual review** (e.g., include `O17` candidates),
+- flagged as **sample O17**   by the initial screen
+- flagged as **sample O17***  O17 candidates
+Only samples flagged as O17 or O17* by the initial screen are carried forward. Samples with no detectable O17 signal are not pursued further and produce no output.
 
 and performs a targeted check to confirm whether the O17-specific region is intact or disrupted.
 
@@ -18,6 +19,7 @@ It uses a two-tier strategy:
 ## Dependencies
 
 - Perl (>= 5.10)
+- BLAST+ (makeblastdb, blastn)
 
 ## Example workflow
 
@@ -48,39 +50,12 @@ text
 ```bash
 perl O17_targeted_screen.pl -s <sample_id> -b <sample.blast.m6> -o <output.txt>
 ```
-
-## Full help message
-
-```
-O17_targeted_screen.pl - O17:K4 serotype confirmation script
-
-DESCRIPTION:
-  This script confirms O17 candidates from BLAST m6 output.
-  It uses a two-tier strategy:
-    1) Full module BLAST (coverage ≥90% → O17 positive)
-    2) Individual gene search + collinearity check (fallback mode)
-
-USAGE:
-  perl O17_targeted_screen.pl -s <sample_id> -b <blast.m6> -o <output.txt>
-
-REQUIRED ARGUMENTS:
+## Parameters
   -s <sample_id>   Sample identifier (used in output, e.g., GCA_123456)
   -b <blast.m6>    BLAST m6 output file (from blastn -outfmt 6)
   -o <output.txt>  Output file (one line if positive/candidate, empty if negative)
 
 OPTIONAL:
   -h, --help       Show this help message and exit
-
-OUTPUT FORMAT:
-  If O17 positive (confirmed by full module or collinearity):
-    <sample_id>\tO17
-  If O17 candidate (genes exist but on different contigs):
-    <sample_id>\tO17*
-  If negative:
-    (empty file, no output)
-
-NOTES:
-  - BLAST must be run with genome as query and reference sequences as subject.
-  - The script expects query sequence IDs to start with these names
-    (suffix like ':length' is allowed, e.g., gene_273:921).
-```
+    
+See example/README.md for details.
