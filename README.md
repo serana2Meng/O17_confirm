@@ -51,8 +51,8 @@ text
 perl O17_targeted_screen.pl -s <sample_id> -b <sample.blast.m6> -o <output.txt>
 ```
 ## Parameters
-  -s <sample_id>   Sample identifier (used in output, e.g., GCA_123456)
-  -b <blast.m6>    BLAST m6 output file (from blastn -outfmt 6)
-  -o <output.txt>  Output file (one line if positive/candidate, empty if negative)
+- -s <sample_id>   Sample identifier (used in output, e.g., GCA_123456)
+- -b <blast.m6>    BLAST m6 output file (from blastn -outfmt 6)
+- -o <output.txt>  Output file (one line if positive/candidate, empty if negative)
     
 See example/README.md for details.
