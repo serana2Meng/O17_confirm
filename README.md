@@ -7,9 +7,7 @@ It takes samples that fall into one of the following three categories:
 
 - flagged as **sample O17**   by the initial screen
 - flagged as **sample O17***  O17 candidates
-Only samples flagged as O17 or O17* by the initial screen are carried forward. Samples with no detectable O17 signal are not pursued further and produce no output.
-
-and performs a targeted check to confirm whether the O17-specific region is intact or disrupted.
+- Only samples flagged as O17 or O17* by the initial screen are carried forward. Samples with no detectable O17 signal are not pursued further and produce no output. 
 
 It uses a two-tier strategy:
 
